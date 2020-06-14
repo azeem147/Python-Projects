@@ -8,7 +8,6 @@ object = PyPDF2.PdfFileReader("test.pdf")
 # get number of pages
 NumPages = object.getNumPages()
 
-
 # extract text and do the search
 for i in range(0, NumPages):
     PageObj = object.getPage(i)
