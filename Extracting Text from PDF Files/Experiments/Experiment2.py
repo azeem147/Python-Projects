@@ -3,8 +3,6 @@ from pdfminer.converter import TextConverter
 from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfpage import PDFPage
-# csv_exporter.py
-
 
 pdf_path = r'F:\Python Projects\test.pdf'
 
