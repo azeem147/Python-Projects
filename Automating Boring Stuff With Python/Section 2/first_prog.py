@@ -9,10 +9,10 @@ print(spam * 3)
 # First Program hello.py
 print('Hello World')
 print("What's your name?")  # Ask for name
-myName = input('Azeem')
+myName = input()
 print("Nice to meet you, " + myName)
 print('The length of your name is:')
 print(len(myName))
 print("What's your age?")
-myAge = input(23)
-print("You will be" + str(int(myAge) + 1) + 'in a year')
+myAge = input()
+print("You will be " + str(int(myAge) + 1) + ' in a year')
