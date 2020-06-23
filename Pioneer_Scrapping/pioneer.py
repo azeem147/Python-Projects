@@ -12,7 +12,8 @@ import pandas as pd
 import time
 
 # importing requests
-import requests
+# import requests
+
 
 # need to install chrome driver, you need to change this when clone this repo
 chomedriver = 'F:/Python Projects/Pioneer_Scrapping/chromedriver'
@@ -58,11 +59,13 @@ browser.find_element_by_xpath(viewFeedback_button).click()
 time.sleep(3)
 
 # getting current_url
-current_url = browser.current_url
-page = requests.get(current_url)
-data = page.text
-
-soup = BeautifulSoup(data, 'html.parser')
+# current_url = browser.current_url
+# content = browser.current_url.page_source
+browser.get(browser.current_url)
+content = browser.page_source
+# Creating BeautifulSoap
+soup = BeautifulSoup(content)
+text = soup.find_all(text=True)
 
 # Creating lists to store pageContent
 Week = []
@@ -71,19 +74,23 @@ Player = []
 
 # sifting through content
 pageContent = 'page-content'
-for content in soup.findAll('div', href=True, attrs={'class': pageContent}):
-    Week = content.find('h2', attrs={'class': 'mb-3 title'})
+for a in soup.findAll('a', href=True, attrs={'class': pageContent}):
+    Week = text.find('text', attrs={'class': 'mb-3 title'})
 
 # storing feedbackText class
     feedbackText = 'serif feedback-row-text'
-    playerFeedback = content.find('tbody', attrs={'class': feedbackText})
+    playerFeedback = text.find('div', attrs={'class': feedbackText})
 # storing Player Name
-    Player = content.find('tbody', attrs={'class': 'text-md-nowrap'})
+    Player = text.find('div', attrs={'class': 'text-md-nowrap'})
 # Appending data into lists
     Week.append(Week.text)
     playerFeedback.append(playerFeedback.text)
     Player.append(Player.text)
 
+print(Week)
+print(playerFeedback)
+print(Player)
+
 # storing data into CSV
-df = pd.DataFrame({'Week': Week, 'Feedback': playerFeedback, 'Player': Player})
-df.to_csv('Pioneer.csv', index=False, encoding='utf-8')
+# df = pd.DataFrame({'Week': Week, 'Feedback': playerFeedback, 'Player': Player})
+# df.to_csv('Pioneer.csv', index=False, encoding='utf-8')
