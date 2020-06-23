@@ -1,6 +1,9 @@
 # using selenium to open chrome
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 # using BeautifulSoap for Scrapping
 from bs4 import BeautifulSoup
@@ -8,11 +11,11 @@ from bs4 import BeautifulSoup
 # using pandas to create CSV
 import pandas as pd
 
-# importing time to control the flow
-import time
-
 # importing requests
-# import requests
+import requests
+
+# importing time
+import time
 
 
 # need to install chrome driver, you need to change this when clone this repo
@@ -55,42 +58,18 @@ browser.implicitly_wait(4)
 viewFeedback_button = '/html/body/div[4]/div/div/div/div[2]/div[3]/div[1]/a'
 browser.find_element_by_xpath(viewFeedback_button).click()
 
-# storing content of the current_url
-time.sleep(3)
+# Viewing Current URL on a new tab
+time.sleep(2)
+browser.switch_to.window(browser.window_handles[-1])  # swtiching tabs
+url = browser.current_url
 
-# getting current_url
-# current_url = browser.current_url
-# content = browser.current_url.page_source
-browser.get(browser.current_url)
-content = browser.page_source
-# Creating BeautifulSoap
-soup = BeautifulSoup(content)
-text = soup.find_all(text=True)
+# extracting element of Week
+week = '/html/body/div[4]/div/h2'
 
-# Creating lists to store pageContent
-Week = []
-playerFeedback = []
-Player = []
 
-# sifting through content
-pageContent = 'page-content'
-for a in soup.findAll('a', href=True, attrs={'class': pageContent}):
-    Week = text.find('text', attrs={'class': 'mb-3 title'})
+def extract_week(self):
+    week_element = self.browser.find_element_by_xpath(week)
+    print(week_element)
 
-# storing feedbackText class
-    feedbackText = 'serif feedback-row-text'
-    playerFeedback = text.find('div', attrs={'class': feedbackText})
-# storing Player Name
-    Player = text.find('div', attrs={'class': 'text-md-nowrap'})
-# Appending data into lists
-    Week.append(Week.text)
-    playerFeedback.append(playerFeedback.text)
-    Player.append(Player.text)
 
-print(Week)
-print(playerFeedback)
-print(Player)
-
-# storing data into CSV
-# df = pd.DataFrame({'Week': Week, 'Feedback': playerFeedback, 'Player': Player})
-# df.to_csv('Pioneer.csv', index=False, encoding='utf-8')
+extract_week()
