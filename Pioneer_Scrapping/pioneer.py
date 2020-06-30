@@ -61,15 +61,30 @@ browser.find_element_by_xpath(viewFeedback_button).click()
 # Viewing Current URL on a new tab
 time.sleep(2)
 browser.switch_to.window(browser.window_handles[-1])  # swtiching tabs
-url = browser.current_url
-
-# extracting element of Week
-week = '/html/body/div[4]/div/h2'
 
 
-def extract_week(self):
-    week_element = self.browser.find_element_by_xpath(week)
-    print(week_element)
+# extracting dates
+
+
+def extract_week():
+    week_element = browser.find_elements_by_class_name('mb-3')
+    dates = []
+    for date in week_element:
+        print(date.text)
+        dates.append(date.text)
+    return dates
+
+# extracting feedback text
+
+
+def extract_feedback():
+    feedback_element = browser.find_elements_by_class_name('feedback-row-text')
+    feedbacks = []
+    for feedback in feedback_element:
+        print(feedback.text)
+        feedbacks.append(feedback.text)
+    return feedback
 
 
 extract_week()
+extract_feedback()
