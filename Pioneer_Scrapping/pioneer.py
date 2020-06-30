@@ -1,18 +1,18 @@
 # using selenium to open chrome
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.common.exceptions import TimeoutException
 
 # using BeautifulSoap for Scrapping
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 
 # using pandas to create CSV
-import pandas as pd
+# import pandas as pd
 
 # importing requests
-import requests
+# import requests
 
 # importing time
 import time
