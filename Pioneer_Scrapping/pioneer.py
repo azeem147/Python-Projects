@@ -33,12 +33,13 @@ browser.find_element(By.XPATH, login).click()
 browser.implicitly_wait(4)
 email_field = '//*[@id="identifierId"]'
 browser.find_element(By.XPATH, email_field).send_keys('azm2006@gmail.com')
-next_button = '//*[@id="identifierNext"]/div/span/span'
+next_button = '//*[@id="identifierNext"]/div/button/div[2]'
 browser.find_element_by_xpath(next_button).click()
 browser.implicitly_wait(4)
 password_field = '//*[@id="password"]/div[1]/div/div[1]/input'
 browser.find_element(By.XPATH, password_field).send_keys('Karachi5169141')
-browser.find_element_by_xpath('//*[@id="passwordNext"]/div/span').click()
+next_button_pass = '//*[@id="passwordNext"]/div/button/div[2]'
+browser.find_element_by_xpath(next_button_pass).click()
 input('Press any key to continue after authenticating')
 
 # The next piece will execute after you complete authenticating
@@ -86,5 +87,5 @@ def extract_feedback():
     return feedback
 
 
-extract_week()
-extract_feedback()
+print(extract_week())
+print(extract_feedback())
